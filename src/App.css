@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+.App {
+  text-align: center;
+  margin-top: 100px;
+}
+.AppHeader {
+  padding-left: 240px;
+}
+@media (max-width: 600px) {
+  .App {
+    padding: 0;
+  }
+  .AppHeader {
+    padding: 0;
+  }
+}
