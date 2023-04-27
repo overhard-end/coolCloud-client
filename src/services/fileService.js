@@ -6,10 +6,8 @@ class FileService {
   sourse = axios.CancelToken.source();
   api = new Http({ withAuth: true });
   progressArray = [];
-  getFiles() {
-    return new Promise(async (resolve) => {
-      await this.api.get('/files').then((res) => resolve(res));
-    });
+  async getFiles() {
+    return await this.api.get('/files');
   }
   async removeFiles(filePath) {
     return await this.api.post('/fileRemove', { filePath: filePath });

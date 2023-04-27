@@ -26,9 +26,10 @@ import { FileDownloadProgress } from '../components/fileDownloadProgress';
 
 export const FileList = () => {
   const dispatch = useDispatch();
-  const fileStore = useSelector((state) => state.filesReducer);
-  const { isLoading, fileStack, selectedFile } = fileStore;
+  const { error, isLoading, fileStack, selectedFile } = useSelector((state) => state.filesReducer);
+
   const selectedFilePath = fileStack[fileStack.length - 1]?.path.split('/');
+  console.log(error);
   useEffect(() => {
     dispatch(fetchFiles());
   }, []);
@@ -92,7 +93,9 @@ export const FileList = () => {
           </Box>
         </Box>
 
-        {isLoading ? (
+        {error ? (
+          <Typography variant="h5"> {error} </Typography>
+        ) : isLoading ? (
           <CircularProgress />
         ) : (
           <Grid item xs={12} md={6}>

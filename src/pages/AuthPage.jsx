@@ -17,6 +17,7 @@ export const AuthPage = () => {
         <Typography mb="50px" color="gray" variant="h4">
           For using our services, please sing up or sign in to your account.
         </Typography>
+
         <Routes>
           <Route path="/sign-in" element={<SignIn />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>

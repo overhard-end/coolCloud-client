@@ -7,10 +7,16 @@ const initialState = {
   size: 0,
   maxSize: 0,
   isLoading: true,
+  error: '',
 };
 
 const filesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SET_FILES_ERROR':
+      return {
+        ...state,
+        error: 'Cannot get files',
+      };
     case SET_FILES:
       return {
         ...state,

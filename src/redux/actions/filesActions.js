@@ -22,7 +22,7 @@ export function fetchFiles() {
       fileService
         .getFiles()
         .then((response) => dispatch({ type: SET_FILES, payload: response.data }))
-        .catch((err) => err);
+        .catch((err) => dispatch({ type: 'SET_FILES_ERROR' }));
     } catch (error) {
       console.log(error);
     }
