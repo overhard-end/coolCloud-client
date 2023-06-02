@@ -14,15 +14,15 @@ import {
   Typography,
 } from '@mui/material';
 
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { UserContext } from '..';
 
 import { ProfileMenu } from '../components/ProfileMenu';
+import { useSelector } from 'react-redux';
 
 export const Profile = () => {
-  const { user } = useContext(UserContext);
+  const user = useSelector((state) => state.userReducer);
   return (
     <>
       <AppBar>
@@ -43,7 +43,7 @@ export const Profile = () => {
       </AppBar>
       <Container maxWidth="md" sx={{ marginTop: '100px' }}>
         <Box display="flex" marginBottom="20px" position={'relative'}>
-          <Avatar src={user.image} sx={{ width: 150, height: 150 }} />
+          <Avatar sx={{ width: 150, height: 150 }} />
           <IconButton
             disableRipple={true}
             sx={{

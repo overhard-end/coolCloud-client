@@ -1,4 +1,4 @@
-import { ArrowDownward, SubdirectoryArrowLeft } from '@mui/icons-material';
+import { ArrowDownward, Error, ErrorOutline, SubdirectoryArrowLeft } from '@mui/icons-material';
 import {
   Box,
   CircularProgress,
@@ -31,7 +31,7 @@ export const FileList = () => {
   const selectedFilePath = fileStack[fileStack.length - 1]?.path.split('/');
   console.log(error);
   useEffect(() => {
-    dispatch(fetchFiles());
+    // dispatch(fetchFiles());
   }, []);
 
   return (
@@ -94,7 +94,10 @@ export const FileList = () => {
         </Box>
 
         {error ? (
-          <Typography variant="h5"> {error} </Typography>
+          <Typography sx={{ fontSize: '26px', color: 'grey' }} variant="overline" component="h3">
+            {error}
+            <ErrorOutline sx={{ fontSize: '50px' }} />
+          </Typography>
         ) : isLoading ? (
           <CircularProgress />
         ) : (

@@ -18,14 +18,15 @@ import store from '../store';
 
 export function fetchFiles() {
   return async (dispatch) => {
-    try {
-      fileService
-        .getFiles()
-        .then((response) => dispatch({ type: SET_FILES, payload: response.data }))
-        .catch((err) => dispatch({ type: 'SET_FILES_ERROR' }));
-    } catch (error) {
-      console.log(error);
-    }
+    fileService
+      .getFiles()
+      .then((response) => {
+        if (response.data.length > 0) {
+          dispatch({ type: SET_FILES, payload: response.data });
+        }
+        dispatch({ type: 'SET_FILES_ERROR' });
+      })
+      .catch((err) => dispatch({ type: 'SET_FILES_ERROR' }));
   };
 }
 

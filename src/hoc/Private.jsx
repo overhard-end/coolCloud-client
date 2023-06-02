@@ -1,11 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { UserContext } from '..';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 const Private = ({ children }) => {
-  const user = useContext(UserContext);
-  const refreshToken = user.tokens.refreshToken;
-  if (!refreshToken) return <Navigate to="/auth" replace />;
+  const user = useSelector((state) => state.userReducer);
+  if (!user.accessToken) return <Navigate to="/" replace />;
   return children ? children : <Outlet />;
 };
 export default Private;

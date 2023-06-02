@@ -1,10 +1,10 @@
 import axios from 'axios';
-import Http from '../api/api';
+import FileApi from '../api/fileApi';
 import store from '../redux/store';
 class FileService {
   chunkSize = 10 * 1024 * 1024;
   sourse = axios.CancelToken.source();
-  api = new Http({ withAuth: true });
+  api = new FileApi({ withAuth: true });
   progressArray = [];
   async getFiles() {
     return await this.api.get('/files');

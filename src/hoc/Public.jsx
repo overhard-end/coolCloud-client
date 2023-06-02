@@ -1,10 +1,9 @@
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-import { UserContext } from '..';
-import { useContext } from 'react';
 
 const Public = ({ children }) => {
-  const user = useContext(UserContext);
-  if (user.tokens.accessToken) return <Navigate to="/" />;
+  const { accessToken } = useSelector((state) => state.userReducer);
+  if (accessToken) return <Navigate to="/storage" />;
   return children ? children : <Outlet />;
 };
 export default Public;

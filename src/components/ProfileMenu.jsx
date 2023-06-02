@@ -1,11 +1,13 @@
 import { AccountCircle, Logout, Settings } from '@mui/icons-material';
 import { Avatar, IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { UserContext } from '..';
+import { logout } from '../redux/actions/userActions';
 
 export const ProfileMenu = () => {
-  const { user, logout } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userReducer);
   const [anchorEl, setAchorEl] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -35,7 +37,7 @@ export const ProfileMenu = () => {
             Настройки
           </MenuItem>
         </Link>
-        <MenuItem onClick={() => logout()}>
+        <MenuItem onClick={() => dispatch(logout())}>
           <Logout />
           Выход
         </MenuItem>

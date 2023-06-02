@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
-import { AppBar, Box, Button, Toolbar } from '@mui/material';
+import React from 'react';
+import { AppBar, Box, Toolbar } from '@mui/material';
 import { MenuTools } from './MenuTools';
 import { SearchField } from './SearchField';
 import { ProfileMenu } from './ProfileMenu';
 import { AppIcon } from './AppIcon';
-import { UserContext } from '..';
-import { Link } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
 
 export default function Header() {
-  const user = useContext(UserContext);
+  const user = useSelector((state) => state.userReducer);
   return (
     <AppBar position="fixed" color="primary" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'right' }}>
         <AppIcon />
-        {user.tokens.accessToken ? (
+        {user.accessToken ? (
           <>
             <Box position="absolute" marginLeft="250px" left="0">
               <MenuTools />
@@ -24,14 +24,7 @@ export default function Header() {
             </Box>
           </>
         ) : (
-          <Box>
-            <Link to="/auth/sign-in">
-              <Button variant="contained">Sign in</Button>
-            </Link>
-            <Link to="/auth/sign-up">
-              <Button variant="contained">Sign up</Button>
-            </Link>
-          </Box>
+          ''
         )}
       </Toolbar>
     </AppBar>
