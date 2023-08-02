@@ -6,7 +6,7 @@ const prod = {
 };
 const dev = {
   url: {
-    FILE_API_URL: 'http://localhost:3000/api',
+    FILE_API_URL: 'http://localhost:4000/api',
     AUTH_API_URL: 'http://localhost:5000/api',
   },
 };

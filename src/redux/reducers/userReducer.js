@@ -4,6 +4,7 @@ const initialState = {
   accessToken: localStorage.getItem('TOKEN'),
   isLoading: false,
   error: {},
+  inVerify:false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -23,7 +24,11 @@ const userReducer = (state = initialState, action) => {
         error: {},
         isLoading: false,
       };
-
+      case 'IN_VERIFY':
+        return {
+          ...state,
+         inVerify:true
+        };
     case 'UPDATE_TOKEN':
       return {
         ...state,

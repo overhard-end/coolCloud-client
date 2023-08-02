@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const Public = ({ children }) => {
   const { accessToken } = useSelector((state) => state.userReducer);
-  if (accessToken) return <Navigate to="/storage" />;
+  if (accessToken) return <Navigate to = "/storage" replace />;
   return children ? children : <Outlet />;
 };
 export default Public;

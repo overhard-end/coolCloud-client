@@ -6,6 +6,7 @@ class FileService {
   sourse = axios.CancelToken.source();
   api = new FileApi({ withAuth: true });
   progressArray = [];
+
   async getFiles() {
     return await this.api.get('/files');
   }
@@ -85,9 +86,7 @@ class FileService {
           progress = e.data.progress;
           handleHashingProgress(e.data.progress);
         }
-        if (e.data.ready) {
-          return resolve(e.data.hash);
-        }
+        if (e.data.ready)return resolve(e.data.hash);
       };
     });
   }

@@ -1,4 +1,4 @@
-import { ArrowDownward, Error, ErrorOutline, SubdirectoryArrowLeft } from '@mui/icons-material';
+import { ArrowDownward, ErrorOutline, SubdirectoryArrowLeft } from '@mui/icons-material';
 import {
   Box,
   CircularProgress,
@@ -29,9 +29,9 @@ export const FileList = () => {
   const { error, isLoading, fileStack, selectedFile } = useSelector((state) => state.filesReducer);
 
   const selectedFilePath = fileStack[fileStack.length - 1]?.path.split('/');
-  console.log(error);
+  
   useEffect(() => {
-    // dispatch(fetchFiles());
+    dispatch(fetchFiles());
   }, []);
 
   return (

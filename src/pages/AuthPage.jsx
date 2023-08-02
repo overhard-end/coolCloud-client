@@ -4,19 +4,24 @@ import {
   Alert,
   Box,
   Button,
+  Card,
+  CardContent,
+  CardHeader,
   CircularProgress,
   Container,
+  Divider,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
 
 import { useForm, Controller } from 'react-hook-form';
-import { getAuth } from '../redux/actions/userActions';
+import { getAuth, register } from '../redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { DriveFolderUploadRounded, MarkAsUnread } from '@mui/icons-material';
 
 export const AuthPage = () => {
-  const { isLoading, error } = useSelector((state) => state.userReducer);
+  const { isLoading, error, inVerify } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const [authType, setAuthType] = useState('signup');
   const withCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -54,16 +59,29 @@ export const AuthPage = () => {
     }
   }, [error]);
 
-  console.log(error);
+ 
   const onSubmit = async (data, e) => {
     delete data['confirmPass'];
-    dispatch(getAuth(data, authType));
+    if(authType ==='signup') return dispatch(register(data))
+    dispatch(getAuth(data,));
   };
 
   return (
     <>
       <Header />
       <Container maxWidth="xs">
+      {inVerify ? 
+      <Card >
+        <CardContent>
+        <Typography variant='h3' fontWeight='600' color='primary'> Great!</Typography>
+        <Divider/>
+        <MarkAsUnread color='primary'/>
+        <Typography fontWeight='600'>Check your email to confirm </Typography>
+        {/* <Divider/>
+        <Button  variant='contained' onClick={()=>document.location.replace('/')} > Back to Home </Button> */}
+        </CardContent>
+      </Card> : 
+<>
         {types.map((type) => (
           <Button
             key={type}
@@ -115,6 +133,8 @@ export const AuthPage = () => {
         <Box paddingTop="20px">
           {error.param === 'server' ? <Alert severity="error">{error.msg}</Alert> : ''}
         </Box>
+        </>
+}
       </Container>
     </>
   );

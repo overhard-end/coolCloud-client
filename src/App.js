@@ -11,11 +11,10 @@ import { MainPage } from './pages/MainPage';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUser } from './redux/actions/userActions';
-
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUser());
+  dispatch(getUser())
   }, []);
 
   return (
@@ -25,12 +24,11 @@ export const App = () => {
           <Route path="/storage" element={<FileList />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound/>} />
         </Route>
         <Route element={<Public />}>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/auth" element={<AuthPage type={'Login'} />}></Route>
-
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

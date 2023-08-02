@@ -5,7 +5,7 @@ import { authInterceptor } from './authInterceptor';
 class FileApi {
   constructor(status) {
     this.withAuth = status && status.withAuth ? status.withAuth : false;
-    this.instance = axios.create({ baseURL: config.url.API_URL, withCredentials: this.withAuth });
+    this.instance = axios.create({ baseURL: config.url.FILE_API_URL, withCredentials: this.withAuth });
     return this.init();
   }
   init() {

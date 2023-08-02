@@ -39,7 +39,7 @@ export const MenuTools = () => {
         setOpen(false);
       })
       .catch((result) => {
-        console.log(result);
+       
         setValidate(result.data.message);
       });
   };
